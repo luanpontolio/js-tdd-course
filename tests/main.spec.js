@@ -1,38 +1,64 @@
 var expect = require('chai').expect;
+var calc = require('../src/main.js');
 
-describe("Main", function(){
-  var arr;
+describe("Calc", function(){
+  // some tests
+  describe("smoke test", function(){
 
+    it("should exist the calc lib", function(){
+      expect(calc).to.exist;
+    });
 
-  before(function(){
-    console.log("before");
+    it("should exist the method `sum`", function(){
+      expect(calc.sum).to.exist;
+      expect(calc.sum).to.be.a('function');
+    });
+
+    it("should exist the method `sub`", function(){
+      expect(calc.sub).to.exist;
+      expect(calc.sub).to.be.a('function');
+    });
+
+    it("should exist the method `mult`", function(){
+      expect(calc.mult).to.exist;
+      expect(calc.mult).to.be.a('function');
+    });
+
+    it("should exist the method `div`", function(){
+      expect(calc.div).to.exist;
+      expect(calc.div).to.be.a('function');
+    });
   });
 
-  after(function(){
-    console.log("after");
-  });
-
-  beforeEach(function(){
-    arr = [1,2,3];
+  describe("Sum", function(){
+    it("should return 4 when `sum(2, 2)`", function(){
+      expect(calc.sum(2,2)).to.be.equal(4)
+    })
   })
 
-  afterEach(function(){
+  describe("Sub", function(){
+    it("should return 0 when `sub(2, 2)`", function(){
+      expect(calc.sub(2,2)).to.be.equal(0)
+    })
 
+    it("should return -4 when `sub(2, 6)`", function(){
+      expect(calc.sub(2,6)).to.be.equal(-4)
+    })
   })
 
-  it("should have size of 4 when we push another value", function(){
-    arr.push(4);
-    expect(arr).to.have.lengthOf(4);
+  describe("Mult", function(){
+    it("should return 4 when `mult(2, 2)`", function(){
+      expect(calc.mult(2,2)).to.be.equal(4)
+    })
   })
 
+  describe("Div", function(){
+    it("should return 1 when `sum(2, 2)`", function(){
+      expect(calc.div(2,2)).to.be.equal(1)
+    })
 
-  it("should remove value 3 when use pop function", function(){
-    arr.pop();
-    expect(arr).to.not.include(3) ; //
-  })
-
-  it("should have a size 2 when pop a value from the array", function(){
-    arr.pop();
-    expect(arr.length).to.be.eql(2); // 2
+    it("should return `Não é possível divisão por zero!` when num2 is zero", function(){
+      expect(calc.div(4, 0)).to.be.equal("Não é possível divisão por zero!");
+    })
   })
 });
